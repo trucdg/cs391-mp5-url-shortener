@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 
-export default function ShortenerForm() {
+interface ShortenerFormProps {
+    onAliasCreated?: () => void;
+  }
+
+export default function ShortenerForm({ onAliasCreated }: ShortenerFormProps) {
   const [url, setUrl] = useState("");
   const [alias, setAlias] = useState("");
   const [shortUrl, setShortUrl] = useState<string | null>(null);
@@ -22,6 +26,7 @@ export default function ShortenerForm() {
       if (response.ok) {
         const data = await response.json();
         setShortUrl(`${window.location.origin}/${data.alias}`);
+        onAliasCreated?.(); // Notify parent to refresh the list
       } else {
         const errorData = await response.json();
         setError(errorData.error);
