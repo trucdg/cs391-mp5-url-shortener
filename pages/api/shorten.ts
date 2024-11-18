@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Validate the URL
       try {
         new URL(url);
-      } catch (err) {
+      } catch {
         return res.status(400).json({ error: "Invalid URL" });
       }
   

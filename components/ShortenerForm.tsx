@@ -47,7 +47,7 @@ export default function ShortenerForm({ onAliasCreated }: ShortenerFormProps) {
         const errorData = await response.json();
         setError(errorData.error);
       }
-    } catch (err) {
+    } catch {
       setError("Something went wrong.");
     }
   };
